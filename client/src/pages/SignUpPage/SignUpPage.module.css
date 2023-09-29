@@ -1,0 +1,15 @@
+.container {
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 300px;
+}
+
+.flex {
+	display: flex;
+}
+
+.grey {
+	color: #9da2b5;
+	font-weight: 600;
+	text-align: center;
+}

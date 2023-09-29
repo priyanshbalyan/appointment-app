@@ -1,0 +1,78 @@
+.container {
+	margin-left: 16px;
+	margin-right: 16px;
+}
+
+.icon {
+	margin-top: 20px;
+	height: 30px;
+	width: 30px;
+	color: #f85f6a;
+}
+
+.divider {
+	height: 2px;
+	background-color: #e5e7e8;
+	margin-top: 8px;
+	margin-bottom: 8px;
+}
+
+h1 {
+	font-weight: 400;
+}
+
+select {
+	font-family: Lato;
+	width: 200px;
+	height: 40px;
+	border-radius: 8px;
+	border: none;
+	background-color: #e5e7e8;
+	font-weight: 600;
+	padding-left: 16px;
+	padding-right: 16px;
+	margin-bottom: 16px;
+}
+
+.dayContainer {
+	overflow-x: scroll;
+	display: flex;
+	overflow-x: scroll;
+	padding-top: 2px;
+	padding-bottom: 2px;
+}
+
+.bookButton {
+	max-width: none;
+}
+
+.dayButton {
+	font-family: Lato;
+	width: 70px;
+	min-width: 70px;
+	height: 70px;
+	background-color: #e5e7e8;
+	margin: 6px;
+	color: black;
+	border-radius: 16px;
+	text-align: center;
+	font-size: 0.9em;
+}
+
+.buttonHighlight {
+	font-family: Lato;
+	border: 2px solid #f85f6a;
+	width: 70px;
+	min-width: 70px;
+	height: 70px;
+	background-color: #e5e7e8;
+	margin: 6px;
+	color: black;
+	border-radius: 16px;
+	text-align: center;
+	font-size: 0.9em;
+}
+
+.bold {
+	font-weight: 800;
+}
