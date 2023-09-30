@@ -1,8 +1,14 @@
 import styles from "features/loader/Loader.module.css";
 
-export const Loader = (): React.ReactElement => {
+interface Props {
+  fullPage?: boolean
+}
+
+export const Loader = ({ fullPage = true }: Props): React.ReactElement => {
+  const containerClass = fullPage ? `${styles.loadingContainer} ${styles.fullPage}`: styles.loadingContainer;
+  
   return (
-    <div className={styles.loadingContainer}>
+    <div className={containerClass}>
       <div className={styles.loadingSpinner}></div>
     </div>
   );

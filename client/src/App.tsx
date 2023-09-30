@@ -13,7 +13,7 @@ export default function App(): React.ReactElement {
       <Toaster
         position="bottom-center" 
         containerStyle={{
-          bottom: 100,
+          bottom: 80,
         }}
         toastOptions={{
           style: {

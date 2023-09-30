@@ -66,6 +66,8 @@ async function main() {
     },
   });
 
+  const date1 = new Date('2023-10-10');
+  date1.setHours(10);
   // create dummy slots
   const slot1 = await prisma.slot.upsert({
     where: { id: 1 },
@@ -73,7 +75,7 @@ async function main() {
       authorId: user1.id,
     },
     create: {
-      time: new Date(),
+      time: date1,
       authorId: user1.id,
       doctorId: user2.id,
     },

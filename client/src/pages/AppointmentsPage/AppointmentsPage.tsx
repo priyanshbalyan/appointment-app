@@ -44,7 +44,7 @@ export default function AppointmentsPage(): React.ReactElement | null {
         <FontAwesomeIcon className={styles.logout} icon={faArrowRightFromBracket} onClick={handleLogout} />
       </div>
       {isLoading 
-        ? <Loader /> : 
+        ? <div><Loader fullPage={false} /></div> : 
           <>
             {cards.length > 0 ? cards : <>No appointments booked</>}
             <div className={styles.buttonContainer}>

@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import styles from 'pages/SignInPage/SignInPage.module.css';
 import toast from 'react-hot-toast';
 import { Endpoints } from 'features/router/endpoints';
+import { processError } from 'utils';
 
 const SignInPage = (): React.ReactElement => {
   const [login, { isLoading }] = useLoginMutation();
@@ -36,7 +37,7 @@ const SignInPage = (): React.ReactElement => {
       dispatch(setCredentials(auth));
       navigate(Endpoints.APPOINTMENTS);
     } catch (err) {
-      toast("Invalid credentials!");
+      processError(err);
     }
   };
 

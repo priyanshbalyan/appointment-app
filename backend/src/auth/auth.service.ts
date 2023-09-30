@@ -27,7 +27,7 @@ export class AuthService {
 
     // If password does not match, throw an error
     if (!isPasswordValid) {
-      throw new UnauthorizedException('Invalid password');
+      throw new UnauthorizedException('Invalid credentials');
     }
 
     // Step 3: Generate a JWT token containing the user's ID and return it

@@ -37,7 +37,7 @@ const SignUpPage = (): React.ReactElement => {
       toast('You need to enter both email and password fields');
       return;
     }
-    if (!(password === confirmPassword)) {
+    if (password !== confirmPassword) {
       toast('Passwords dont match!');
       return
     }

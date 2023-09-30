@@ -23,6 +23,11 @@ import { UserEntity } from './entities/user.entity';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { Prisma } from '@prisma/client';
 
+function isValidEmail(email) {
+  const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+  return emailRegex.test(email);
+}
+
 @Controller('users')
 @ApiTags('users')
 export class UsersController {
@@ -31,13 +36,17 @@ export class UsersController {
   @Post()
   @ApiCreatedResponse({ type: UserEntity })
   async create(@Body() createUserDto: CreateUserDto) {
+    if (!isValidEmail(createUserDto.email)) {
+      return new BadRequestException('Email is not a valid email');
+    }
     try {
       return new UserEntity(await this.usersService.create(createUserDto));
     } catch (error) {
-      if (error instanceof Prisma.PrismaClientKnownRequestError) {
-        if (error.code === 'P2002') {
-          return new BadRequestException('User already exists!');
-        }
+      if (
+        error instanceof Prisma.PrismaClientKnownRequestError &&
+        error.code === 'P2002'
+      ) {
+        return new BadRequestException('User already exists!');
       }
     }
   }

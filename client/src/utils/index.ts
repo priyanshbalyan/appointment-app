@@ -158,6 +158,8 @@ export const processError = (err: any): void => {
 	let messages = err?.data?.message || err.message || [];
 	messages = (Array.isArray(messages) ? messages : [messages]) || [];
 	messages.forEach((message: string) => toast(capitalizeFirstLetter(message)));
+	if (messages.length === 0)
+		toast("An unknown error occured! Please try later");
 };
 
 export const formatTime = (date: Date): string => {

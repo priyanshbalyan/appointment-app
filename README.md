@@ -4,7 +4,7 @@ Install dependencies with
 
 `yarn install-deps`
 
-(You need to have atleast yarn v1.22.19 and NodeJS v20.5.0 installed for the commands to run, can modify them to support npm)
+(You need to have at least yarn v1.22.19 and NodeJS v20.5.0 installed for the commands to run, can modify them to support npm)
 
 Run production build
 
@@ -34,6 +34,7 @@ To run app in dev mode,
 
 # App specific features:
 
+- Can make reservations for 3 months in advance
 - Show loader when a route is loading
 - Show error toast and redirect back to login when user tries to access protected route
 - Redirect user to appointment page after user creates a slot and update list
@@ -44,6 +45,7 @@ To run app in dev mode,
 - Can book slots from 8:00 AM to 4:00 PM
 - Hide dates before today in date selector and only show slots from next hour from now in time selector
 - Error page on accessing unknown route
+- Error handling and validations
 
 # Requirements Checklist
 
