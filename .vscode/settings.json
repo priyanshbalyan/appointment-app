@@ -1,0 +1,9 @@
+{
+  "eslint.workingDirectories": [
+    "client",
+    "backend"
+  ],
+  "cSpell.words": [
+    "timerange"
+  ]
+}

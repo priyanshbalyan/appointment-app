@@ -13,3 +13,7 @@
 	font-weight: 600;
 	text-align: center;
 }
+
+input[type="checkbox"] {
+	accent-color: #f85f6a;
+}

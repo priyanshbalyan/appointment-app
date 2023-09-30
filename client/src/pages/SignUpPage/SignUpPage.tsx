@@ -3,7 +3,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "pages/SignUpPage/SignUpPage.module.css";
 import toast from "react-hot-toast";
-import { capitalizeFirstLetter } from "utils";
+import { processError, processResponse } from "utils";
+import { Endpoints } from "features/router/endpoints";
 
 const SignUpPage = (): React.ReactElement => {
   const [signUp, { isLoading }] = useSignUpMutation();
@@ -45,15 +46,15 @@ const SignUpPage = (): React.ReactElement => {
       return;
     }
     try {
-      await signUp({
+      const data = await signUp({
         email,
         password
       }).unwrap();
+      processResponse(data);
       toast('Successful sign up! Logged you in.');
-      navigate('/appointments');
+      navigate(Endpoints.APPOINTMENTS);
     } catch (err) {
-      const messages = (err as any)?.data?.message;
-      messages?.forEach((message: string) => toast(capitalizeFirstLetter(message)));
+      processError(err);
     }
   };
 
@@ -80,7 +81,7 @@ const SignUpPage = (): React.ReactElement => {
       <br />
       <button onClick={handleSignUp}>{isLoading ? 'Loading' : 'Continue' }</button>
       <br />
-      <p className={styles.grey}>Have an Account? <a href="/">Sign In</a></p>
+      <p className={styles.grey}>Have an Account? <a href={Endpoints.SIGN_IN}>Sign In</a></p>
     </div>
   );
 };

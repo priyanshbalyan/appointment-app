@@ -1,6 +1,7 @@
 .container {
-	margin-left: 16px;
-	margin-right: 16px;
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 380px;
 }
 
 .icon {
@@ -35,9 +36,8 @@ select {
 }
 
 .dayContainer {
-	overflow-x: scroll;
 	display: flex;
-	overflow-x: scroll;
+	overflow-x: auto;
 	padding-top: 2px;
 	padding-bottom: 2px;
 }

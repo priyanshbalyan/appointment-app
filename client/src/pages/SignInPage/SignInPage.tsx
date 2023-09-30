@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from 'pages/SignInPage/SignInPage.module.css';
 import toast from 'react-hot-toast';
+import { Endpoints } from 'features/router/endpoints';
 
 const SignInPage = (): React.ReactElement => {
   const [login, { isLoading }] = useLoginMutation();
@@ -23,13 +24,17 @@ const SignInPage = (): React.ReactElement => {
 
   const handleSignIn = async (): Promise<void> => {
     if (isLoading) return;
+    if(!email || !password) { 
+      toast("You need to enter both email and password!");
+      return;
+    }
     try {
       const auth = await login({
         email,
         password,
       }).unwrap();
       dispatch(setCredentials(auth));
-      navigate('/appointments');
+      navigate(Endpoints.APPOINTMENTS);
     } catch (err) {
       toast("Invalid credentials!");
     }
@@ -50,7 +55,7 @@ const SignInPage = (): React.ReactElement => {
       <br />
       <button onClick={handleSignIn}>{isLoading ? 'Loading' : 'Sign In'}</button>
       <br />
-      <p className={styles.grey}>Haven&apos;t got an Account? <a href="/signup">Sign Up</a></p>
+      <p className={styles.grey}>Haven&apos;t got an Account? <a href={Endpoints.SIGN_UP}>Sign Up</a></p>
     </div>
   );
 };

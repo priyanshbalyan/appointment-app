@@ -147,9 +147,15 @@ export const capitalizeFirstLetter = (sentence: string): string => {
 	return sentence.charAt(0).toUpperCase() + sentence.slice(1);
 };
 
+export const processResponse = (response: any): void => {
+	if (process.env.NODE_ENV !== "production") console.log(response);
+	if (response?.status === 400 || response?.status === 500)
+		throw new Error(response.message);
+};
+
 export const processError = (err: any): void => {
 	if (process.env.NODE_ENV !== "production") console.log(err);
-	let messages = err?.data?.message;
+	let messages = err?.data?.message || err.message || [];
 	messages = (Array.isArray(messages) ? messages : [messages]) || [];
 	messages.forEach((message: string) => toast(capitalizeFirstLetter(message)));
 };

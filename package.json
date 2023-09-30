@@ -1,0 +1,16 @@
+{
+    "name": "priyanshbalyan",
+    "author": {
+        "name": "Priyansh Balyan",
+        "url": "https://www.linkedin.com/in/priyanshbalyan"
+    },
+    "scripts": {
+        "install-deps": "cd client && yarn install && cd ../backend && yarn install",
+        "start": "react-scripts start",
+        "build": "cd client && yarn build && cd ../backend && yarn build",
+        "prod": "yarn build && node backend/dist/src/main.js --name bariendo-assessment",
+        "backend:dev": "cd backend && yarn start:dev",
+        "client:dev": "cd client && yarn start"
+    },
+    "license": "MIT"
+}

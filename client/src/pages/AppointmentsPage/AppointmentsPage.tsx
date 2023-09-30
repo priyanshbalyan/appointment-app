@@ -9,11 +9,13 @@ import { useNavigate } from 'react-router-dom';
 import { logout } from 'features/auth/authSlice';
 import { setSlots } from 'features/booking/slotsSlice';
 import { groupSlotsByDate } from 'utils';
+import { Endpoints } from 'features/router/endpoints';
+import { Loader } from 'features/loader/Loader';
 
 export default function AppointmentsPage(): React.ReactElement | null {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { data: slots } = useGetSlotsQuery();
+  const { data: slots, isLoading } = useGetSlotsQuery();
 
   useEffect(() => {
     if (slots) dispatch(setSlots(slots));
@@ -24,7 +26,16 @@ export default function AppointmentsPage(): React.ReactElement | null {
     navigate('/');
   };
 
-  const handleBook = (): void => { navigate('/book'); };
+  const handleBook = (): void => { navigate(Endpoints.BOOK); };
+
+  const cards = groupSlotsByDate(slots).map(([group, groupedSlots]) => {
+    return (
+      <div key={group}>
+        <div className={styles.greyBox}>{group}</div>
+        {groupedSlots.map(slot => <Card key={slot.id} slot={slot} />)}
+      </div>
+    )
+  });
 
   return (
     <div className={styles.container}>
@@ -32,19 +43,15 @@ export default function AppointmentsPage(): React.ReactElement | null {
         Booked Appointments
         <FontAwesomeIcon className={styles.logout} icon={faArrowRightFromBracket} onClick={handleLogout} />
       </div>
-      {
-        groupSlotsByDate(slots).map(([group, groupedSlots]) => {
-          return (
-            <div key={group}>
-              <div className={styles.greyBox}>{group}</div>
-              {groupedSlots.map(slot => <Card key={slot.id} slot={slot} />)}
+      {isLoading 
+        ? <Loader /> : 
+          <>
+            {cards.length > 0 ? cards : <>No appointments booked</>}
+            <div className={styles.buttonContainer}>
+              <button onClick={handleBook}>+ Book an appointment</button>
             </div>
-          )
-        })
+          </>
       }
-      <div className={styles.buttonContainer}>
-        <button onClick={handleBook}>+ Book an appointment</button>
-      </div>
     </div>
   );
 }

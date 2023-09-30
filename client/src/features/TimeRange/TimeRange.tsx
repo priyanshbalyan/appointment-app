@@ -1,5 +1,5 @@
 import { useGetSlotsByIdQuery } from 'app/services/slotsApi';
-import styles from 'features/TimeRange/TimeRange.module.css'
+import styles from 'features/timerange/TimeRange.module.css'
 import toast from 'react-hot-toast';
 import { includesDate } from 'utils';
 

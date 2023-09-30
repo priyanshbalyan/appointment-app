@@ -4,24 +4,12 @@ import React from 'react';
 import { ErrorPage } from 'pages/ErrorPage';
 import routes from 'features/router/routes';
 import { Toaster } from 'react-hot-toast';
+import { ProtectedRoute } from 'features/auth/ProtectedRoute';
+import { Loader } from 'features/loader/Loader';
 
 export default function App(): React.ReactElement {
   return (
     <div className="App">
-      <Routes>
-        {routes.map((route) => (
-          <Route
-            key={route.path}
-            path={route.path}
-            element={
-              <React.Suspense fallback={<>Loading...</>}>
-                {React.createElement(route.component)}
-              </React.Suspense>
-            }
-          />
-        ))}
-        <Route path="*" element={<ErrorPage />} />
-      </Routes>
       <Toaster
         position="bottom-center" 
         containerStyle={{
@@ -36,6 +24,26 @@ export default function App(): React.ReactElement {
           },
         }}
       />
+      <Routes>
+        {routes.map((route) => (
+          <Route
+            key={route.path}
+            path={route.path}
+            element={
+              <React.Suspense fallback={<Loader />}>
+                {route.requireAuth
+                  ? (
+                    <ProtectedRoute>
+                      {React.createElement(route.component)}
+                    </ProtectedRoute>
+                  )
+                  : React.createElement(route.component)}
+              </React.Suspense>
+            }
+          />
+        ))}
+        <Route path="*" element={<ErrorPage />} />
+      </Routes>
     </div>
   );
 }

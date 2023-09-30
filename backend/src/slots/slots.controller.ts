@@ -57,7 +57,6 @@ export class SlotsController {
   async create(@Req() request: AuthRequest) {
     const createSlotDto: CreateSlotDto | CreateSlotDto[] = request.body;
     try {
-      console.log(createSlotDto);
       if (Array.isArray(createSlotDto)) {
         const createdSlots = await Promise.all(
           createSlotDto.map((slotDto) => {
@@ -67,7 +66,6 @@ export class SlotsController {
         );
         return createdSlots.map((slot) => new SlotEntity(slot));
       } else {
-        console.log(createSlotDto);
         return new SlotEntity(await this.slotsService.create(createSlotDto));
       }
     } catch (error) {

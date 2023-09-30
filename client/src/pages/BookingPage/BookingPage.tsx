@@ -2,8 +2,9 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useAppDispatch, useAppSelector } from "app/hooks";
 import { useBookSlotsMutation, useGetDoctorsQuery } from "app/services/slotsApi";
-import TimeRange from "features/TimeRange/TimeRange";
+import TimeRange from "features/timerange/TimeRange";
 import { selectedDoctor, setSelectedDoctor, setSlots } from "features/booking/slotsSlice";
+import { Endpoints } from "features/router/endpoints";
 import styles from "pages/BookingPage/BookingPage.module.css"
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
@@ -12,7 +13,7 @@ import {
 	getDateRanges,
 	getNext3Months, 
 	getTimeRanges,
-  getUniqueDates,
+    getUniqueDates,
 	includesDate,
 	processError, 
 	removeDate
@@ -50,6 +51,10 @@ const BookingPage = (): React.ReactElement => {
 	};
 
 	const handleTimeChange = (time: Date): void => {
+		if (selectedTimes.length >= 24) {
+			toast("Maximum 24 slots can be selected!");
+			return;
+		}
 		if (includesDate(selectedTimes, time)) {
 			setSelectedTimes(removeDate(selectedTimes, time));
 		} else {
@@ -68,8 +73,9 @@ const BookingPage = (): React.ReactElement => {
 				doctorId: selectedDoc?.id ?? -1
 			}))).unwrap();
       toast('Appointment Booked!');
+			// invalidate currently loaded slots to be fetched again
 			dispatch(setSlots([]));
-			navigate('/appointments');
+			navigate(Endpoints.APPOINTMENTS);
     } catch (err) {
 				processError(err);
     }

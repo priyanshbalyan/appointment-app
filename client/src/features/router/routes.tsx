@@ -1,4 +1,5 @@
 import React from "react";
+import { Endpoints } from "features/router/endpoints";
 
 const SignInPage = React.lazy(
 	async () => await import("pages/SignInPage/SignInPage"),
@@ -15,24 +16,28 @@ const BookingPage = React.lazy(
 
 const routes = [
 	{
-		path: "/",
+		path: Endpoints.SIGN_IN,
 		component: SignInPage,
 		name: "SignInPage",
+		requireAuth: false,
 	},
 	{
-		path: "/appointments",
-		component: AppointmentsPage,
-		name: "Appointments",
-	},
-	{
-		path: "/signup",
+		path: Endpoints.SIGN_UP,
 		component: SignUpPage,
 		name: "SignUp",
+		requireAuth: false,
 	},
 	{
-		path: "/book",
+		path: Endpoints.APPOINTMENTS,
+		component: AppointmentsPage,
+		name: "Appointments",
+		requireAuth: true,
+	},
+	{
+		path: Endpoints.BOOK,
 		component: BookingPage,
 		name: "Booking",
+		requireAuth: true,
 	},
 ];
 
