@@ -5,7 +5,7 @@ import {
 	useBookSlotsMutation,
 	useGetDoctorsQuery,
 } from "app/services/slotsApi";
-import TimeRange from "features/timerange/TimeRange";
+import TimePicker from "features/timepicker/TimePicker";
 import {
 	selectedDoctor,
 	setSelectedDoctor,
@@ -158,7 +158,7 @@ const BookingPage = (): React.ReactElement => {
 			<div className={styles.dayContainer}>{renderDays}</div>
 			<div className={styles.divider}></div>
 			{selectedDoc && (
-				<TimeRange
+				<TimePicker
 					onSelect={handleTimeChange}
 					range={timeRange}
 					selectedTimes={selectedTimes}

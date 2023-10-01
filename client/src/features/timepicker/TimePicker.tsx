@@ -1,5 +1,5 @@
 import { useGetSlotsByIdQuery } from "app/services/slotsApi";
-import styles from "features/timerange/TimeRange.module.css";
+import styles from "features/timepicker/TimePicker.module.css";
 import toast from "react-hot-toast";
 import { includesDate } from "utils";
 
@@ -10,7 +10,7 @@ interface Props {
 	docId: number;
 }
 
-const TimeRange = (props: Props): React.ReactElement => {
+const TimePicker = (props: Props): React.ReactElement => {
 	const { onSelect, range, selectedTimes, docId } = props;
 	const { data: slots } = useGetSlotsByIdQuery(docId);
 
@@ -48,4 +48,4 @@ const TimeRange = (props: Props): React.ReactElement => {
 	return <div className={styles.gridContainer}>{buttons}</div>;
 };
 
-export default TimeRange;
+export default TimePicker;

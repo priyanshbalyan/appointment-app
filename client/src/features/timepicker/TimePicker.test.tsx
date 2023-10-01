@@ -1,17 +1,16 @@
 import { fireEvent } from "@testing-library/react";
-import TimeRange from "features/timerange/TimeRange";
+import TimePicker from "features/timepicker/TimePicker";
 import { renderWithProviders } from "utils/test-utils";
 
-describe("<TimeRange />", () => {
-	beforeEach(() => {});
-
-	afterEach(() => {
-		jest.clearAllMocks();
-	});
-
+describe("<TimePicker />", () => {
 	it('renders "No open slots available" when range is empty', () => {
 		const { getByText } = renderWithProviders(
-			<TimeRange onSelect={() => {}} range={[]} selectedTimes={[]} docId={1} />,
+			<TimePicker
+				onSelect={() => {}}
+				range={[]}
+				selectedTimes={[]}
+				docId={1}
+			/>,
 		);
 
 		const noSlotText = getByText("No open slots available for today");
@@ -21,7 +20,7 @@ describe("<TimeRange />", () => {
 	it("renders time buttons and handles selection", () => {
 		const onSelectMock = jest.fn();
 		const { getByText } = renderWithProviders(
-			<TimeRange
+			<TimePicker
 				onSelect={onSelectMock}
 				range={[
 					{ time: "9:00 AM", value: new Date() },

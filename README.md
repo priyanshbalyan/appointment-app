@@ -56,11 +56,15 @@ To run app in dev mode,
 # Requirements Checklist
 
 1. Register / Login - Done
+
    Email and Password - Done
 
 2. Choose a free slot date and time - Done
+
    1 slot is equal to 1 hour - Done
+
    A user can choose more than 1 slot a day (Maximum is 24 slots) - Done
+
    A user cannot choose any slot that is already reserved - Done
 
 3. Show a list of daily reserved slot - Done
