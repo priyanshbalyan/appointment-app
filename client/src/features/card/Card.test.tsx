@@ -1,31 +1,26 @@
-describe('<Card /> component', () => {
-  // it('renders item information correctly', () => {
-  //   const onItemClickMock = jest.fn();
+import { render } from "@testing-library/react";
+import { Card } from "./Card";
+import { type Slot } from "common/types";
 
-  //   render(<Card item={mockItem} onItemClick={onItemClickMock} />);
+describe("<Card />", () => {
+	it("renders correctly", () => {
+		const slot = {
+			doctor: {
+				name: "Dr. Smith",
+				specialisation: "Cardiologist",
+			},
+			time: "2023-10-10T03:00:00.000Z",
+		} as unknown as Slot;
 
-  //   expect(screen.getByText(mockItem.name)).toBeInTheDocument();
-  //   expect(screen.getByText(`¥ 1,000`)).toBeInTheDocument();
-  //   expect(
-  //     screen.getByText(mockItem.like_count.toString()),
-  //   ).toBeInTheDocument();
-  //   expect(screen.queryByText('SOLD')).not.toBeInTheDocument();
-  // });
+		const { getByText } = render(<Card slot={slot} />);
 
-  // it('displays SOLD when item is sold out', () => {
-  //   const soldOutItem = { ...mockItem, is_sold_out: true };
+		const doctorNameElement = getByText("Dr. Smith");
+		expect(doctorNameElement).toBeInTheDocument();
 
-  //   render(<Card item={soldOutItem} onItemClick={jest.fn()} />);
+		const formattedTimeElement = getByText("10:00 AM");
+		expect(formattedTimeElement).toBeInTheDocument();
 
-  //   expect(screen.getByText('SOLD')).toBeInTheDocument();
-  // });
-
-  // it('triggers onItemClick callback when card is clicked', () => {
-  //   const onItemClickMock = jest.fn();
-
-  //   render(<Card item={mockItem} onItemClick={onItemClickMock} />);
-
-  //   fireEvent.click(screen.getByText('Sample Item'));
-  //   expect(onItemClickMock).toHaveBeenCalledWith(mockItem.id);
-  // });
+		const specialisationElement = getByText("Cardiologist");
+		expect(specialisationElement).toBeInTheDocument();
+	});
 });

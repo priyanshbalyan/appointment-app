@@ -1,6 +1,6 @@
 # Bariendo Assessment
 
-Install dependencies with
+Install dependencies
 
 `yarn install-deps`
 
@@ -11,6 +11,10 @@ Run production build
 `yarn prod`
 
 Access the app at `http://localhost:3000`
+
+Run tests
+
+`yarn test`
 
 # Run app in dev mode
 
@@ -23,14 +27,16 @@ To run app in dev mode,
 
 # Tech Stack:
 
-- NestJS for backend - First time working with NestJS
+- NestJS for backend - First time working with NestJS and Prisma
 - React for Frontend
 - Prisma SQLite for database
 - React lazy loading
 - Redux Toolkit for state management and RTK query for API fetch
 - Password Hashing with bcrypt
 - JWT tokens for login tokens
+- Swagger for API documentation
 - Typescript, Prettier and ESLint
+- For convenience SQLite db is being used and data is already populated from file backend/prisma/seed.ts
 
 # App specific features:
 

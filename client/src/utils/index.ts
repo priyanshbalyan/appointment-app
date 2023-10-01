@@ -11,13 +11,14 @@ interface LocaleTimeOptions {
 	hour12: true;
 }
 
-export const getNext3Months = (): Array<{
+export const getNext3Months = (
+	currentDate: Date = new Date(),
+): Array<{
 	month: string;
 	year: number;
 	value: number;
 }> => {
 	const months = [];
-	const currentDate = new Date();
 
 	for (let i = 0; i < 4; i++) {
 		const nextMonth = new Date(currentDate);
@@ -38,9 +39,8 @@ export const getNext3Months = (): Array<{
 
 export const getDateRanges = (
 	month?: number,
+	currentDate = new Date(),
 ): Array<{ week: string; day: number }> => {
-	const currentDate = new Date();
-
 	const startDate =
 		month && currentDate.getMonth() !== month
 			? new Date(currentDate.getFullYear(), month, 1)
@@ -73,6 +73,7 @@ export const getDateRanges = (
 export const getTimeRanges = (
 	month?: number,
 	day?: number,
+	currentDate = new Date(),
 ): Array<{ time: string; value: Date }> => {
 	const now = new Date();
 	month = month === undefined ? now.getMonth() : month;
@@ -159,7 +160,7 @@ export const processError = (err: any): void => {
 	messages = (Array.isArray(messages) ? messages : [messages]) || [];
 	messages.forEach((message: string) => toast(capitalizeFirstLetter(message)));
 	if (messages.length === 0)
-		toast("An unknown error occured! Please try later");
+		toast("An unknown error occurred! Please try later");
 };
 
 export const formatTime = (date: Date): string => {
@@ -173,6 +174,7 @@ export const formatTime = (date: Date): string => {
 
 export const groupSlotsByDate = (
 	slotsArray: Slot[] | undefined,
+	today = new Date(),
 ): Array<[string, Slot[]]> => {
 	if (slotsArray === undefined) return [];
 	const slotGroups: Record<string, Slot[]> = {};
@@ -183,8 +185,9 @@ export const groupSlotsByDate = (
 		day: "numeric",
 	};
 
-	const today = new Date();
-
+	slotsArray.sort(
+		(a, b) => new Date(a.time).getTime() - new Date(b.time).getTime(),
+	);
 	for (const slot of slotsArray) {
 		const inputDate = new Date(slot.time);
 		const slotKey =
@@ -199,7 +202,5 @@ export const groupSlotsByDate = (
 		slotGroups[slotKey].push(slot);
 	}
 
-	return Object.entries(slotGroups).sort(
-		(a, b) => new Date(a[0]).getTime() - new Date(b[0]).getTime(),
-	);
+	return Object.entries(slotGroups);
 };

@@ -8,10 +8,11 @@
         "install-deps": "cd client && yarn install && cd ../backend && yarn install",
         "start": "react-scripts start",
         "build": "cd client && yarn build && cd ../backend && yarn build",
-        "db": "cd backend && npx prisma migrate dev",
+        "populate-db": "cd backend && npx prisma migrate dev",
         "prod": "yarn build && node backend/dist/src/main.js --name bariendo-assessment",
         "backend:dev": "cd backend && yarn start:dev",
-        "client:dev": "cd client && yarn start"
+        "client:dev": "cd client && yarn start",
+        "test": "cd client && yarn test && cd ../backend && yarn test"
     },
     "license": "MIT"
 }

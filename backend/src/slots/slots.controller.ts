@@ -12,9 +12,9 @@ import {
   BadRequestException,
   Query,
 } from '@nestjs/common';
-import { SlotsService } from './slots.service';
-import { CreateSlotDto } from './dto/create-slot.dto';
-import { UpdateSlotDto } from './dto/update-slot.dto';
+import { SlotsService } from 'src/slots/slots.service';
+import { CreateSlotDto } from 'src/slots/dto/create-slot.dto';
+import { UpdateSlotDto } from 'src/slots/dto/update-slot.dto';
 import {
   ApiBearerAuth,
   ApiCreatedResponse,

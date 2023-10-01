@@ -22,8 +22,6 @@ export interface Slot {
 	id: number;
 	specialist: string;
 	time: Date;
-	createdAt: Date;
-	updatedAt: Date;
 	authorId: number | null;
 	author: Author;
 	doctor: Author;
@@ -35,8 +33,6 @@ interface Author {
 	specialisation: string | null;
 	name: string | null;
 	type: string;
-	createdAt: Date;
-	updatedAt: Date;
 }
 
 export interface Doctor {

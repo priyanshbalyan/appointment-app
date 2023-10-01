@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { CreateSlotDto } from './dto/create-slot.dto';
-import { UpdateSlotDto } from './dto/update-slot.dto';
+import { CreateSlotDto } from 'src/slots/dto/create-slot.dto';
+import { UpdateSlotDto } from 'src/slots/dto/update-slot.dto';
 
 @Injectable()
 export class SlotsService {

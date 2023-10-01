@@ -49,6 +49,12 @@ button {
 	margin: 5px 0px 5px 0px;
 	color: white;
 	font-weight: 800;
+	transition: all 0.1s linear;
+	cursor: pointer;
+}
+
+button:hover {
+	opacity: 0.9;
 }
 
 label {
